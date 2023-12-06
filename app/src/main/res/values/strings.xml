@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">Blitz</string>
+
+    <string name="title_blitz_execution">Infratores</string>
+    <string name="title_offender">Infratores</string>
+    <string name="title_offender_not_found">Nenhum infrator adicionado</string>
+    <string name="title_blitz_location">Local da Blitz</string>
+    <string name="title_create_blitz">Cadastrar blitz</string>
+    <string name="title_enable_permission">Habilitar permissão</string>
+    <string name="title_registrated_blitz">Blitz cadastradas</string>
+    <string name="title_blitz_not_found">Nenhuma blitz cadastrada</string>
+    <string name="title_blitz_not_found_location">Não identificamos blitz em um raio de 2Km da sua localização</string>
+
+    <string name="description_create_blitz">Preencha os campos abaixo para cadastrar a blitz</string>
+    <string name="description_blitz_not_found">Nenhuma blitz cadastrada no momento. Cadastre uma em um raio de 2Km da sua localização para que você possa autuar.</string>
+    <string name="description_blitz_location">Posicione o marcador no local onde a blitz irá acontecer e posteriormente clique no marcador para confirmar o local</string>
+    <string name="description_enable_permission">Para que você possa autuar precisamos verificar a sua localização para identificar se o agente realmente está no local de uma blitz.</string>
+    <string name="description_near_blitz">Para poder autuar você precisa estar dentro do raio de uma blitz. Caso a sua localização esteja fora do raio você não poderá autuar por motivos de segurança</string>
+
+    <string name="button_label_marker_position">Posicionar marcador</string>
+    <string name="button_label_add">Adicionar</string>
+    <string name="button_label_add_blitz">Adicionar blitz</string>
+    <string name="button_label_cancel">Cancelar</string>
+    <string name="button_label_click_to_add">Clique aqui para confirmar o local</string>
+    <string name="button_label_create">Cadastrar</string>
+    <string name="button_label_enable">Habilitar</string>
+    <string name="button_label_end_blitz">Finalizar blitz</string>
+
+    <string name="placeholder_blitz_date">Data de execução</string>
+    <string name="placeholder_blitz_hour">Horário</string>
+    <string name="placeholder_blitz_address">Local da blitz</string>
+    <string name="placeholder_adress_not_defined">Endereço não localizado, posicione melhor o marcador</string>
+
+    <string name="label_map">Mapa</string>
+    <string name="label_fine">Autuar</string>
+    <string name="label_my_location">Minha localização</string>
+
+    <string name="error_message_all_required">Todos os campos são obrigatórios</string>
+    <string name="error_message_date_invalid">A data fornecida é inválida</string>
+    <string name="error_message_time_invalid">A hora fornecida é inválida</string>
+
+</resources>
