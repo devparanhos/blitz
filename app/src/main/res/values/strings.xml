@@ -9,7 +9,7 @@
     <string name="title_enable_permission">Habilitar permissão</string>
     <string name="title_registrated_blitz">Blitz cadastradas</string>
     <string name="title_blitz_not_found">Nenhuma blitz cadastrada</string>
-    <string name="title_blitz_not_found_location">Não identificamos blitz em um raio de 2Km da sua localização</string>
+    <string name="title_blitz_not_found_location">Não identificamos blitz em um raio de 4Km da sua localização</string>
 
     <string name="description_create_blitz">Preencha os campos abaixo para cadastrar a blitz</string>
     <string name="description_blitz_not_found">Nenhuma blitz cadastrada no momento. Cadastre uma em um raio de 2Km da sua localização para que você possa autuar.</string>

@@ -6,41 +6,60 @@ import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
 import android.location.Location
-import android.util.Log
 import androidx.core.app.ActivityCompat
+
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+
 import br.com.detran.blitz.core.function.calculateDistanceBetweenPoints
 import br.com.detran.blitz.presentation.feature.fine.action.FineAction
 import br.com.detran.blitz.presentation.feature.fine.state.FineUiState
 import br.com.detran.blitz.presentation.model.blitz.Blitz
+
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-import kotlinx.coroutines.Dispatchers
+
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+
 import java.util.Locale
 
 class FineViewModel(
-    private val context: Context
+    context: Context,
+    blitz: List<Blitz>
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(FineUiState())
     val state = _state.asStateFlow()
 
     private val fusedLocationClient: FusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(context)
+    private val hasPermission = ActivityCompat.checkSelfPermission(
+        context,
+        Manifest.permission.ACCESS_FINE_LOCATION
+    ) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+        context,
+        Manifest.permission.ACCESS_COARSE_LOCATION
+    ) == PackageManager.PERMISSION_GRANTED
+
+    init {
+        if (hasPermission) {
+            getLocation(blitz = blitz, context = context)
+        } else {
+            _state.update { it.copy(loading = false) }
+        }
+    }
 
     fun triggerAction(action: FineAction) {
         when(action) {
             is FineAction.GetLocation -> {
-                getLocation(blitz = action.blitz)
+                getLocation(blitz = action.blitz, context = action.context)
             }
         }
     }
 
-    private fun getLocation(blitz: List<Blitz>) {
+    private fun getLocation(blitz: List<Blitz>, context: Context) {
         _state.update { it.copy(loading = true) }
 
         viewModelScope.launch {
@@ -54,7 +73,6 @@ class FineViewModel(
                 }
             } catch (e: SecurityException) {
                 _state.update { it.copy(loading = false) }
-
             }
         }
     }
@@ -69,7 +87,7 @@ class FineViewModel(
                             longBlitz = blitz.longitude,
                             latLocation = address.latitude,
                             longLocation = address.longitude
-                        ) <= 2.0
+                        ) <= 4.0
                     ) {
                         _state.update { state -> state.copy(nearBlitz = blitz) }
                         break

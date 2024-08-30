@@ -37,18 +37,19 @@ fun String.isDateValid(format: String = "dd/MM/yyyy"): Boolean {
     val dateFormat = SimpleDateFormat(format, Locale.getDefault())
     dateFormat.isLenient = false
 
-    try {
+    return try {
         val inputDate = dateFormat.parse(this)
-        val currentDate = Calendar.getInstance().time
+        val currentDate = Calendar.getInstance().apply {
+            set(Calendar.HOUR_OF_DAY, 0)
+            set(Calendar.MINUTE, 0)
+            set(Calendar.SECOND, 0)
+            set(Calendar.MILLISECOND, 0)
+        }.time
 
-        if (inputDate != null && !inputDate.before(currentDate)) {
-            return true
-        }
+        inputDate != null && (inputDate.equals(currentDate) || inputDate.after(currentDate))
     } catch (e: ParseException) {
-        return false
+        false
     }
-
-    return false
 }
 
 fun String.isTimeValid( format: String = "HH:mm"): Boolean {

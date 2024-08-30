@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.material.Snackbar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -38,11 +37,12 @@ import br.com.detran.blitz.presentation.model.blitz.Blitz
 import br.com.detran.blitz.ui.theme.LightGray
 import br.com.detran.blitz.ui.theme.Primary
 import org.koin.androidx.compose.getViewModel
+import org.koin.core.parameter.parametersOf
 
 @Composable
 fun FineScreen(
-    viewModel: FineViewModel = getViewModel(),
     list: List<Blitz>,
+    viewModel: FineViewModel = getViewModel(parameters = { parametersOf(list) }),
     toMap: () -> Unit,
     showSnack: () -> Unit
 ) {
@@ -89,7 +89,7 @@ fun FineScreen(
 
             hasPermission && state.myLocation == null -> {
                 viewModel.triggerAction(
-                    action = FineAction.GetLocation(blitz = list)
+                    action = FineAction.GetLocation(blitz = list, context = LocalContext.current)
                 )
             }
 

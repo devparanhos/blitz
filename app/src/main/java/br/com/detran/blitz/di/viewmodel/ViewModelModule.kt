@@ -16,7 +16,8 @@ val viewModelModule = module {
 
     viewModel {
         FineViewModel(
-            context = androidContext()
+            context = androidContext(),
+            blitz = get()
         )
     }
 }

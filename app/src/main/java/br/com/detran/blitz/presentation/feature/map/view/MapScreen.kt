@@ -55,6 +55,7 @@ fun MapScreen(
                         cameraPositionState.position.target.latitude,
                         cameraPositionState.position.target.longitude
                     )
+
                     true
                 }
             )

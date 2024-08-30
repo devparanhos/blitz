@@ -4,8 +4,7 @@ import android.location.Address
 import br.com.detran.blitz.presentation.model.blitz.Blitz
 
 data class FineUiState(
-    val loading: Boolean = false,
-    val hasPermission: Boolean? = null,
+    val loading: Boolean = true,
     val myLocation: Address? = null,
     val nearBlitz: Blitz? = null
 )
